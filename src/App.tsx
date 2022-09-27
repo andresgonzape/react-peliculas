@@ -3,6 +3,8 @@ import './App.css';
 import ListadoPeliculas from './peliculas/ListadoPeliculas';
 import PeliculaIndividual from './peliculas/PeliculaIndividual';
 import { landingPageDTO, pelicula } from './peliculas/peliculas.model';
+import Button from './utils/Button';
+import Menu from './utils/Menu';
 
 function App() {
 
@@ -41,7 +43,11 @@ function App() {
 
   return (
     <>
-      <div>
+      <Menu/>
+      <div className='container'>
+        <Button>
+          Mi Componente Botón
+        </Button>
         <h3>En Cartelera</h3>
         <ListadoPeliculas peliculas={peliculas.enCartelera}/>
 
