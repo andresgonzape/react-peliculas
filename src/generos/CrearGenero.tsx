@@ -14,7 +14,7 @@ export default function CrearGenero(){
             <h3>Crear Género</h3>
 
             <Formik initialValues={{
-                nombre: 'Acción'
+                nombre: ''
 
             }}
                 onSubmit={ values => {
@@ -22,7 +22,7 @@ export default function CrearGenero(){
                 }}
 
                 validationSchema={Yup.object({
-                    nombre: Yup.string().required('Este campo es obligatorio')
+                    nombre: Yup.string().required('Este campo es obligatorio').primeraLetraMayuscula()
                 })}
 
 
