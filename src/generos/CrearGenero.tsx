@@ -1,6 +1,8 @@
-import { Field, Form, Formik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { Form, Formik } from "formik";
+import { Link } from "react-router-dom";
+import * as Yup from 'yup';
 import Button from "../utils/Button";
+import FormGroupText from "../utils/FormGroupText";
 
 export default function CrearGenero(){
 
@@ -15,15 +17,18 @@ export default function CrearGenero(){
                 nombre: 'Acción'
 
             }}
-            onSubmit={ values => {
-                console.log(values);
-            }}
+                onSubmit={ values => {
+                    console.log(values);
+                }}
+
+                validationSchema={Yup.object({
+                    nombre: Yup.string().required('Este campo es obligatorio')
+                })}
+
+
             >
                 <Form>
-                    <div className = "form-group">
-                        <label htmlFor="nombre">Nombre</label>
-                        <Field name="nombre" className="form-control"></Field> 
-                    </div>
+                    <FormGroupText campo="nombre" label="Nombre" placeholder="Nombre del género"></FormGroupText>
                     <Button type="submit">Guardar</Button>
                     <Link className="btn btn-secondary" to="/generos">Cancelar</Link>
                 </Form>
