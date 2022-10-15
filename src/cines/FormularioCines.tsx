@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import FormGroupText from "../utils/FormGroupText";
 import Button from "../utils/Button";
 import { Link } from "react-router-dom";
+import Mapa from "../utils/Mapa";
 
 export default function FormularioCines(props: formularioCinesProps) {
     return(
@@ -17,6 +18,11 @@ export default function FormularioCines(props: formularioCinesProps) {
             {(formikProps) => (
                 <Form>
                     <FormGroupText label="Nombre" campo="nombre"></FormGroupText>
+
+                    <div style={{marginBottom: '1rem'}}>
+                        <Mapa/>
+                    </div>
+
                     <Button disabled={formikProps.isSubmitting} type="submit">Guardar</Button>
                     <Link className="btn btn-secondary" to="/cines">Cancelar</Link>
                 </Form>
