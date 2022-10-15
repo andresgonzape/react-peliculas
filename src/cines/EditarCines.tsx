@@ -1,5 +1,13 @@
+import FormularioCines from "./FormularioCines";
+
 export default function EditarCines(){
     return (
-        <>Editar Cine</>
+        <>
+            <h3>Editar Cine</h3>
+            <FormularioCines 
+                modelo={{nombre: 'Madrid'}}
+                onSumbit={valores => console.log(valores)}
+            />
+        </>
     )
 }
