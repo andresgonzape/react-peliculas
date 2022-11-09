@@ -1,5 +1,6 @@
+import { ReactElement } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
-import { actorPeliculaDTO } from "./actores.model";
+import { actorCreacionDTO, actorPeliculaDTO } from "./actores.model";
 
 export default function TypeAheadActores(props: typeAheadActoresProps){
     
@@ -23,25 +24,61 @@ export default function TypeAheadActores(props: typeAheadActoresProps){
             foto: 'https://m.media-amazon.com/images/M/MV5BNjQ1MWM5OTItZTdiMi00ZTE0LTgzNmItZmY4Y2Q3MWY2YTQ5XkEyXkFqcGdeQXVyMTQzMjU1NjE@._V1_.jpg'
         },
     ]
+
+    const seleccion: actorPeliculaDTO[] = [];
     
     return (
         <>
             <label>Actores:</label>
             <Typeahead
                 id="typeahead"
-                onChange={ actor => {
-                    console.log(actor)
+                onChange={ actores => {
+                    if (props.actores.findIndex(x => x.id === actores[0].id) === -1) {
+                        props.onAdd([...props.actores, actores[0]])
+                    }
                 }}
                 options={ actores }
                 labelKey={ actor => actor.nombre }
                 filterBy={ ['nombre'] }
                 placeholder="Escriba el nombre del actor..."
                 minLength={1}
+                flip={true}
+                selected={seleccion}
+                renderMenuItemChildren={actor => (
+                    <>
+                        <img src={actor.foto} alt="imagen actor" 
+                            style={{
+                                height: '64px',
+                                marginRight: '10px',
+                                width: '64px'
+                            }}
+                        />
+                        <span>{actor.nombre}</span>
+                    </>
+                )}
             />
+
+            <ul className="list-group">
+                {props.actores.map(actor => <li 
+                    className="list-group-item list-group-item-action"
+                    key={actor.id}>
+                        {props.listadoUI(actor)}
+                        <span className="badge badge-primary badge-pill pointer"
+                            style={{marginLeft: '0.5rem'}}
+                            onClick={() => props.onRemove(actor)}
+                        >
+                            X
+                        </span>
+                    </li>
+                )}
+            </ul>
         </>
     )
 }
 
 interface typeAheadActoresProps {
     actores: actorPeliculaDTO[];
+    onAdd(actores: actorPeliculaDTO[]): void;
+    onRemove(actor: actorPeliculaDTO): void;
+    listadoUI(actor: actorPeliculaDTO): ReactElement;
 }
