@@ -25,6 +25,7 @@ export default function CrearPeliculas() {
                 cinesNoSeleccionados={cines}
                 generosSeleccionados={[]}
                 generosNoSeleccionados={generos}
+                actoresSeleccionados={[]}
                 modelo={{titulo: '', enCines: false, trailer: '' }}
                 onSubmit={valores=>console.log(valores)}
             />

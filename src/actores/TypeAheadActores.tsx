@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { actorCreacionDTO, actorPeliculaDTO } from "./actores.model";
 
@@ -26,6 +26,29 @@ export default function TypeAheadActores(props: typeAheadActoresProps){
     ]
 
     const seleccion: actorPeliculaDTO[] = [];
+
+    const [elementoArrastrado, setElementoArrastrado] = useState<actorPeliculaDTO | undefined>(undefined);
+
+    function manejarDragStart(actor: actorPeliculaDTO)
+    {
+        setElementoArrastrado(actor);
+    }
+
+    function manejarDragOver(actor: actorPeliculaDTO)
+    {
+        if (!elementoArrastrado) {
+            return;
+        }
+
+        if (actor.id !== elementoArrastrado.id) {
+            const elementoArrastradoIndice = props.actores.findIndex(x => x.id === elementoArrastrado.id);
+            const actorIndice = props.actores.findIndex(x => x.id === actor.id);
+            const actores = [...props.actores];
+            actores[actorIndice] = elementoArrastrado;
+            actores[elementoArrastradoIndice] = actor;
+            props.onAdd(actores);
+        }
+    }
     
     return (
         <>
@@ -60,6 +83,9 @@ export default function TypeAheadActores(props: typeAheadActoresProps){
 
             <ul className="list-group">
                 {props.actores.map(actor => <li 
+                    draggable={true}
+                    onDragStart={() => manejarDragStart(actor) }
+                    onDragOver={() => manejarDragOver(actor)}
                     className="list-group-item list-group-item-action"
                     key={actor.id}>
                         {props.listadoUI(actor)}
