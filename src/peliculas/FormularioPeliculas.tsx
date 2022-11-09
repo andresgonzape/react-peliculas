@@ -11,6 +11,7 @@ import SelectorMultiple, { selectorMultipleModel } from "../utils/SelectorMultip
 import { generoDTO } from "../generos/generos.model";
 import { useState } from "react";
 import { cineDTO } from "../cines/cines.model";
+import TypeAheadActores from "../actores/TypeAheadActores";
 
 export default function FormularioPeliculas(props: formularioPeliculasProps){
 
@@ -66,6 +67,13 @@ export default function FormularioPeliculas(props: formularioPeliculasProps){
                             }}/>
                     </div>
                     
+                    <div className="form-group">
+                        <TypeAheadActores
+                            actores={[]}
+                        />
+
+                    </div>
+
                     <Button disabled={formikProps.isSubmitting} type="submit">Crear</Button>
                     <Link className="btn btn-secondary" to="/">Cancelar</Link>
                 </Form>
