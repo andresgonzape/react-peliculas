@@ -1,4 +1,4 @@
-import { ErrorMessage, Field } from "formik";
+import { ErrorMessage, Field }  from "formik";
 import MostrarErrorCampo from "./MostrarErrorCampo";
 
 export default function FormGroupText(props: formGroupTextProps) {
@@ -6,11 +6,7 @@ export default function FormGroupText(props: formGroupTextProps) {
         <div className="form-group">
             {props.label ? <label htmlFor={props.campo}>{props.label}</label> : null }
             <Field name={props.campo} className="form-control" placeholder={props.placeholder}></Field>
-            <ErrorMessage name={props.campo }>
-                {mensaje =>
-                    <MostrarErrorCampo mensaje={mensaje}></MostrarErrorCampo>
-                }
-            </ErrorMessage>
+            <ErrorMessage name={props.campo}>{(mensaje:string) => (<MostrarErrorCampo mensaje={mensaje} />) }</ErrorMessage>
         </div>
     );
 }
