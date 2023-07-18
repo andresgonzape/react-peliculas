@@ -13,6 +13,7 @@ import { useState } from "react";
 import { cineDTO } from "../cines/cines.model";
 import TypeAheadActores from "../actores/TypeAheadActores";
 import { actorPeliculaDTO } from "../actores/actores.model";
+import FormGroupMarkdown from "../utils/FormGroupMarkdown";
 
 export default function FormularioPeliculas(props: formularioPeliculasProps){
 
@@ -50,6 +51,7 @@ export default function FormularioPeliculas(props: formularioPeliculasProps){
                     <FormGroupText label="Trailer" campo="trailer" />
                     <FormGroupFecha label="Fecha lanzamiento" campo="fechaLanzamiento" />
                     <FormGroupImagen label="Poster" campo="poster" imagenURL={props.modelo.posterURL}/>
+                    <FormGroupMarkdown campo="resumen" label="Resumen"></FormGroupMarkdown>
 
                     <div className="form-group">
                         <label>Géneros:</label>
