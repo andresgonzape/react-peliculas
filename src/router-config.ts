@@ -11,6 +11,7 @@ import LandingPage from "./LandingPage";
 import CrearPeliculas from "./peliculas/CrearPeliculas";
 import EditarPeliculas from "./peliculas/EditarPeliculas";
 import FiltroPeliculas from "./peliculas/FiltroPeliculas";
+import DetallePelicula from "./peliculas/DetallePelicula";
 import RedireccionarALanding from "./utils/RedireccionarALanding";
 
     //Estas rutas se recorren como un if, primero las que mas arriba se coloquen y así. Por eso la de los errores 404 se pone la ultima
@@ -34,6 +35,7 @@ import RedireccionarALanding from "./utils/RedireccionarALanding";
     { path: '/cines', componente: IndiceCines },
 
     //peliculas
+    { path: '/pelicula/:id', componente: DetallePelicula },
     { path: '/peliculas/crear', componente: CrearPeliculas },
     { path: '/peliculas/editar/:id', componente: EditarPeliculas },
     { path: '/peliculas/filtrar', componente: FiltroPeliculas },
